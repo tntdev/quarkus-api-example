@@ -1,0 +1,93 @@
+buildscript {
+    apply from: "dependencies.gradle"
+}
+
+plugins {
+    id("java")
+    id("io.quarkus") version "$quarkusPluginVersion"
+    id( "io.freefair.lombok") version "$lombokPluginVersion"
+    id("com.diffplug.spotless") version "$spotlessPluginVersion" apply(true)
+}
+
+group = "com.example.graphql"
+description = "GraphQL API example"
+version = "0.0.1-SNAPSHOT"
+
+
+repositories {
+    maven {
+        name bmwNexusName
+        url bmwNexusBaseUrl
+    }
+    maven {
+        name nexusName
+        url "${nexusBaseUrl}${nexusRepoPath}"
+        credentials {
+            username nexusUsername
+            password nexusPassword
+        }
+    }
+    mavenLocal()
+}
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_17 // Use the desired Java version
+    targetCompatibility = JavaVersion.VERSION_17
+}
+
+dependencies {
+    //V1
+    implementation(enforcedPlatform("io.quarkus.platform:quarkus-bom:$quarkusPluginVersion"))
+//    implementation("io.quarkus:quarkus-resteasy-reactive")
+//    implementation("io.quarkus:quarkus-resteasy-reactive-jackson")
+    implementation("io.quarkus:quarkus-smallrye-graphql") // GraphQL support
+
+//    implementation("io.quarkus:quarkus-mongodb-client")
+//    implementation("io.quarkus:quarkus-mongodb-panache")
+//
+//
+//    testImplementation("io.quarkus:quarkus-junit5")
+//    testImplementation("io.rest-assured:rest-assured")
+
+//    implementation("com.bmw.fdlgate.starter-quarkus:starter-quarkus-jib")
+//    implementation(enforcedPlatform("com.bmw.fdlgate.starter-quarkus:starter-quarkus-bom:$starterVersion"))
+//
+//    implementation("com.bmw.fdlgate.starter-quarkus:starter-quarkus-rest")
+}
+
+spotless {
+    java {
+        // https://github.com/diffplug/spotless/tree/main/plugin-gradle#google-java-format
+        googleJavaFormat().aosp()
+
+        importOrder("com.bmw", "com", "de", "org", "java", "javax", "jakarta", "")
+
+        removeUnusedImports()
+        leadingTabsToSpaces()
+        trimTrailingWhitespace()
+        endWithNewline()
+
+        licenseHeader '/* Copyright: (C) Lala AG $YEAR, all rights reserved */'
+    }
+}
+
+tasks.named('test') {
+    useJUnitPlatform()
+}
+
+
+tasks.named("compileTestJava").configure {
+    dependsOn("spotlessApply")
+    dependsOn("compileQuarkusGeneratedSourcesJava")
+//    dependsOn("jandex")
+}
+
+tasks.named("compileJava").configure {
+    dependsOn("spotlessApply")
+    dependsOn("compileQuarkusGeneratedSourcesJava")
+//    dependsOn(":updateChart")
+}
+
+tasks.named { it == "generateEffectiveLombokConfig" }.configureEach {
+    dependsOn("compileQuarkusGeneratedSourcesJava")
+}

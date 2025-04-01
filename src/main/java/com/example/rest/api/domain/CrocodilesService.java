@@ -16,8 +16,8 @@ import jakarta.enterprise.context.ApplicationScoped;
 @ApplicationScoped
 public class CrocodilesService {
 
-    private List<CrocodilesDTO> crocodilesDTOList;
-    private List<OfficesDTO> officesDTOList;
+    private final List<CrocodilesDTO> crocodilesDTOList;
+    private final List<OfficesDTO> officesDTOList;
 
     public CrocodilesService() {
         officesDTOList =

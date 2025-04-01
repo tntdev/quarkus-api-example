@@ -1,12 +1,12 @@
 /* Copyright: (C) Lala AG 2025, all rights reserved */
-package com.example.rest.api.domain;
+package com.example.api.domain;
 
 import static java.lang.Boolean.FALSE;
 import static java.lang.Boolean.TRUE;
 
-import com.example.rest.api.dto.CrocodilesDTO;
-import com.example.rest.api.dto.OfficesDTO;
-import com.example.rest.api.dto.ServiceDTO;
+import com.example.api.dto.CrocodilesDTO;
+import com.example.api.dto.OfficesDTO;
+import com.example.api.dto.ServiceDTO;
 
 import java.util.Arrays;
 import java.util.List;

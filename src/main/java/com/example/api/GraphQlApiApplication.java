@@ -1,5 +1,5 @@
 /* Copyright: (C) Lala AG 2025, all rights reserved */
-package com.example.rest.api;
+package com.example.api;
 
 import static io.quarkus.runtime.Quarkus.run;
 

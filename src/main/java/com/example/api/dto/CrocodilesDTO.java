@@ -1,5 +1,5 @@
 /* Copyright: (C) Lala AG 2025, all rights reserved */
-package com.example.rest.api.dto;
+package com.example.api.dto;
 
 import java.io.Serial;
 import java.io.Serializable;

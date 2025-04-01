@@ -1,6 +1,8 @@
 /* Copyright: (C) Lala AG 2025, all rights reserved */
-package com.example.rest.api.dto;
+package com.example.api.dto;
 
+import java.io.Serial;
+import java.io.Serializable;
 import java.util.List;
 
 import lombok.AllArgsConstructor;
@@ -12,7 +14,9 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class OfficesDTO {
+public class OfficesDTO implements Serializable {
+
+    @Serial private static final long serialVersionUID = 5554562751908551823L;
 
     private String name;
     private String address;

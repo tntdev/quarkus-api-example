@@ -31,28 +31,13 @@ repositories {
 }
 
 java {
-    sourceCompatibility = JavaVersion.VERSION_17 // Use the desired Java version
+    sourceCompatibility = JavaVersion.VERSION_17
     targetCompatibility = JavaVersion.VERSION_17
 }
 
 dependencies {
-    //V1
     implementation(enforcedPlatform("io.quarkus.platform:quarkus-bom:$quarkusPluginVersion"))
-//    implementation("io.quarkus:quarkus-resteasy-reactive")
-//    implementation("io.quarkus:quarkus-resteasy-reactive-jackson")
-    implementation("io.quarkus:quarkus-smallrye-graphql") // GraphQL support
-
-//    implementation("io.quarkus:quarkus-mongodb-client")
-//    implementation("io.quarkus:quarkus-mongodb-panache")
-//
-//
-//    testImplementation("io.quarkus:quarkus-junit5")
-//    testImplementation("io.rest-assured:rest-assured")
-
-//    implementation("com.bmw.fdlgate.starter-quarkus:starter-quarkus-jib")
-//    implementation(enforcedPlatform("com.bmw.fdlgate.starter-quarkus:starter-quarkus-bom:$starterVersion"))
-//
-//    implementation("com.bmw.fdlgate.starter-quarkus:starter-quarkus-rest")
+    implementation("io.quarkus:quarkus-smallrye-graphql")
 }
 
 spotless {
@@ -79,13 +64,11 @@ tasks.named('test') {
 tasks.named("compileTestJava").configure {
     dependsOn("spotlessApply")
     dependsOn("compileQuarkusGeneratedSourcesJava")
-//    dependsOn("jandex")
 }
 
 tasks.named("compileJava").configure {
     dependsOn("spotlessApply")
     dependsOn("compileQuarkusGeneratedSourcesJava")
-//    dependsOn(":updateChart")
 }
 
 tasks.named { it == "generateEffectiveLombokConfig" }.configureEach {

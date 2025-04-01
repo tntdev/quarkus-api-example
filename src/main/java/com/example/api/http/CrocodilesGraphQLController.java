@@ -1,11 +1,11 @@
 /* Copyright: (C) Lala AG 2025, all rights reserved */
-package com.example.rest.api.api.http;
+package com.example.api.http;
 
 import static lombok.AccessLevel.PACKAGE;
 
-import com.example.rest.api.domain.CrocodilesService;
-import com.example.rest.api.dto.CrocodilesDTO;
-import com.example.rest.api.dto.OfficesDTO;
+import com.example.api.domain.CrocodilesService;
+import com.example.api.dto.CrocodilesDTO;
+import com.example.api.dto.OfficesDTO;
 
 import org.eclipse.microprofile.graphql.GraphQLApi;
 import org.eclipse.microprofile.graphql.Name;
